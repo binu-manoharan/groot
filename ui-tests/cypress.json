@@ -1,1 +1,6 @@
-{}
+{
+    "ignoreTestFiles": ["*.js", "*.ts"],
+    "baseUrl": "https://localhost:3000",
+    "viewportWidth": 400,
+    "viewportHeight": 600
+}

@@ -11,7 +11,15 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const cypressTsPreprocessor = require('./cypress-ts-preprocessor');
+const fs = require('fs-extra');
+
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  on('file:preprocessor', cypressTsPreprocessor)
+
+  if (fs.existsSync('cypress-local.json')) {
+    const localConfig = fs.readJsonSync('cypress-local.json');
+    Object.assign(config, localConfig);
+  }
+  return config;
 }
